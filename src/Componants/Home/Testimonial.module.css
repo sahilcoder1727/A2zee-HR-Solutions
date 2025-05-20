@@ -1,0 +1,12 @@
+.slick-slide {
+	padding: 0 10px; /* Adds space between each slide */
+}
+
+.slick-track {
+	display: flex;
+	gap: 20px; /* Ensures gap between the slides */
+}
+
+.slick-list {
+	margin: 0 -10px; /* Adjusts margins to ensure proper alignment */
+}
