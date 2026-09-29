@@ -14,6 +14,12 @@ const partnersLogos = [
 	"/logos/untitled-2-120x120.webp",
 	"/logos/Untitled-design-10.webp",
 	"/logos/revfin.png",
+	"/logos/Clay-Craft-Logo_-removebg-preview.png",
+	"/logos/image-removebg-preview.png",
+	"/logos/images-removebg-preview.png",
+	"/logos/images__2_-removebg-preview.png",
+	"/logos/light.png",
+	"/logos/Vivo-Logo.png",
 ];
 
 const OurPartners = () => {
@@ -25,18 +31,18 @@ const OurPartners = () => {
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 0,
-		pauseOnHover: true, // Pauses on hover
+		pauseOnHover: true,
 		cssEase: "linear",
-		rtl, // Slides right-to-left if true
+		rtl,
 		responsive: [
 			{
-				breakpoint: 1024, // Tablet
+				breakpoint: 1024,
 				settings: {
 					slidesToShow: 4,
 				},
 			},
 			{
-				breakpoint: 768, // Mobile
+				breakpoint: 768,
 				settings: {
 					slidesToShow: 3,
 				},
@@ -44,35 +50,27 @@ const OurPartners = () => {
 		],
 	});
 
+	const rowGroups = Array.from({ length: Math.ceil(partnersLogos.length / 5) }, (_, rowIndex) =>
+		partnersLogos.slice(rowIndex * 5, rowIndex * 5 + 5)
+	);
+
 	return (
 		<div className="bg-white py-8">
 			<h2 className="text-center text-3xl font-semibold mb-6">Our Partners</h2>
 			<div className="max-w-5xl mx-auto space-y-6">
-				{/* First Row: Sliding Right-to-Left */}
-				<Slider {...sliderSettings(true)}>
-					{partnersLogos.slice(0, 5).map((logo, index) => (
-						<div key={index} className="flex justify-center items-center">
-							<img
-								src={logo}
-								alt={`Partner Logo ${index + 1}`}
-								className="h-20 md:h-24 lg:h-28 w-20 md:w-24 lg:w-28 object-contain"
-							/>
-						</div>
-					))}
-				</Slider>
-
-				{/* Second Row: Sliding Left-to-Right */}
-				<Slider {...sliderSettings(false)}>
-					{partnersLogos.slice(5, 10).map((logo, index) => (
-						<div key={index} className="flex justify-center items-center">
-							<img
-								src={logo}
-								alt={`Partner Logo ${index + 6}`}
-								className="h-20 md:h-24 lg:h-28 w-20 md:w-24 lg:w-28 object-contain"
-							/>
-						</div>
-					))}
-				</Slider>
+				{rowGroups.map((group, rowIndex) => (
+					<Slider key={rowIndex} {...sliderSettings(rowIndex % 2 === 0)}>
+						{group.map((logo, index) => (
+							<div key={`${rowIndex}-${index}`} className="flex justify-center items-center">
+								<img
+									src={logo}
+									alt={`Partner Logo ${rowIndex * 5 + index + 1}`}
+									className="h-20 md:h-24 lg:h-28 w-20 md:w-24 lg:w-28 object-contain"
+								/>
+							</div>
+						))}
+					</Slider>
+				))}
 			</div>
 		</div>
 	);
