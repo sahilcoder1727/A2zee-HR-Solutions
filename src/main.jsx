@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { inject } from '@vercel/analytics'
 
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
@@ -111,3 +112,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>,
 )
+
+inject()
